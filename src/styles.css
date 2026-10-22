@@ -84,6 +84,7 @@
   --warning: oklch(0.78 0.16 75);
   --croc: oklch(0.66 0.16 145);
   --croc-dark: oklch(0.48 0.13 148);
+  --whatsapp: oklch(0.81 0.19 156);
   --border: oklch(0.91 0.03 245);
   --input: oklch(0.91 0.03 245);
   --ring: oklch(0.52 0.2 260);
@@ -110,6 +111,7 @@
   --color-warning: var(--warning);
   --color-croc: var(--croc);
   --color-croc-dark: var(--croc-dark);
+  --color-whatsapp: var(--whatsapp);
   --font-display: "Baloo 2", system-ui, sans-serif;
   --font-sans: "Manrope", system-ui, sans-serif;
 }
