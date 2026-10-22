@@ -60,7 +60,7 @@ function Landing() {
             {/* desktop ring */}
             <div className="pointer-events-none absolute inset-0 hidden md:block">
               {RING.map((n, i) => {
-                const pos = [["-8%", "10%"], ["-14%", "55%"], ["92%", "8%"], ["98%", "52%"], ["44%", "-6%"]][i];
+                const pos = ([["-8%", "10%"], ["-14%", "55%"], ["92%", "8%"], ["98%", "52%"], ["44%", "-6%"]] as const)[i] ?? ["0", "0"];
                 return (
                   <a key={n} href="#services" className="pointer-events-auto animate-bob absolute flex size-20 flex-col items-center justify-center rounded-3xl bg-card text-primary shadow-soft transition hover:scale-110"
                     style={{ left: pos[0], top: pos[1], animationDelay: `${i * 0.4}s` }}>
@@ -123,7 +123,7 @@ function Landing() {
               <a key={s.id} href="#estimate" className="rounded-3xl bg-card p-6 shadow-soft transition hover:-translate-y-1">
                 <NyangIcon name={s.icon} className="size-12 text-primary" />
                 <h3 className="mt-3 font-display text-xl font-bold">{t.s[s.id as keyof typeof t.s]}</h3>
-                <p className="text-sm text-muted-foreground">From {kes(s.options[0].price)} / {s.unit}</p>
+                <p className="text-sm text-muted-foreground">From {kes(s.options[0]!.price)} / {s.unit}</p>
               </a>
             ))}
           </div>
@@ -197,7 +197,7 @@ function Estimator() {
   const { t } = useT();
   const [sid, setSid] = useState("laundry");
   const service = SERVICES.find((s) => s.id === sid)!;
-  const [opt, setOpt] = useState(service.options[0].id);
+  const [opt, setOpt] = useState(service.options[0]!.id);
   const [qty, setQty] = useState(3);
   const [city, setCity] = useState("nbo");
   const [express, setExpress] = useState(false);
@@ -211,7 +211,7 @@ function Estimator() {
         <h2 className="font-display text-2xl font-extrabold">{t.estimator}</h2>
         <div className="mt-4 flex gap-2 overflow-x-auto pb-1">
           {SERVICES.map((s) => (
-            <button key={s.id} onClick={() => { setSid(s.id); setOpt(s.options[0].id); setQty(s.min ?? 1); }}
+            <button key={s.id} onClick={() => { setSid(s.id); setOpt(s.options[0]!.id); setQty(s.min ?? 1); }}
               className={`flex shrink-0 items-center gap-2 rounded-full border-2 px-4 py-2 text-sm font-bold transition ${sid === s.id ? "border-primary bg-primary text-primary-foreground" : "border-border"}`}>
               <NyangIcon name={s.icon} className="size-5" />{t.s[s.id as keyof typeof t.s]}
             </button>

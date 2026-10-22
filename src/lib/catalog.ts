@@ -48,7 +48,7 @@ export const SERVICES: Service[] = [
 const OFFICE_MIN: Record<string, number> = { general: 3000, deep: 6000 };
 
 export function estimate(service: Service, optionId: string, qty: number, branch: Branch, express = false) {
-  const opt = service.options.find((o) => o.id === optionId) ?? service.options[0];
+  const opt = service.options.find((o) => o.id === optionId) ?? service.options[0]!;
   const q = Math.max(qty, service.min ?? 1);
   let base = opt.price * q * branch.multiplier;
   if (service.id === "office") base = Math.max(base, OFFICE_MIN[opt.id] ?? 0);
