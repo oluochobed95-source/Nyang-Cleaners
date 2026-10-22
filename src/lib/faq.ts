@@ -1,0 +1,16 @@
+export const FAQ: { q: string; a: string }[] = [
+  { q: "How is laundry priced?", a: "Per kilogram by service level (Wash and Fold, Wash and Iron, Premium). We confirm the final weight at pickup and tell you the exact total before cleaning starts." },
+  { q: "How does pickup and delivery work?", a: "Pick your location on the map. Within 2 km, delivery is a flat fee. Beyond 2 km we cover pickup and you pay only the return trip. You can watch your rider live on the map." },
+  { q: "How long does it take?", a: "Standard 48 hours, express 24 hours." },
+  { q: "Can I pay on delivery?", a: "Yes, cash or M-Pesa. We show and message you the exact amount early, and send a receipt." },
+  { q: "How do coupons and rewards work?", a: "Enter a code at checkout. Regular customers earn rewards after repeat orders." },
+  { q: "What if my laundry weight is different from my estimate?", a: "We message you the revised total before we start. You can approve or cancel." },
+  { q: "What if something is damaged or missing?", a: "Report within 24 hours of delivery and our team will review and resolve it." },
+  { q: "Which cities do you serve?", a: "Nairobi, Kisumu, Eldoret, Nakuru and Mombasa, with more coming." },
+  { q: "Are your housekeepers verified?", a: "Yes. ID, good-conduct certificate and references are checked, and you see their profile and rating before they arrive." },
+  { q: "Can I reschedule or cancel a booking?", a: "Free up to 24 hours before." },
+  { q: "How do I track my order or booking?", a: "Use your order number and phone number, or open the app." },
+  { q: "How do I give feedback or make a complaint?", a: "Use the review link we send after your service, or message us on WhatsApp." },
+  { q: "How do I get the app?", a: "Scan the QR code on our posters, flyers or website, or open our link on your phone and tap \"Add to Home Screen\". It installs in seconds and uses very little data." },
+  { q: "How will I know my clothes are ready and on the way?", a: "We message you when they are ready, when a rider is assigned, when the rider is on the way, and a few minutes before arrival. You can also track the rider live." },
+];

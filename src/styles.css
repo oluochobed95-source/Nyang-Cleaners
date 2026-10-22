@@ -62,39 +62,72 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 1rem;
+  /* Nyang brand: ocean #0A5CD6, navy #0B2A5B, sky #E8F3FF, aqua #22C3EE */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.28 0.09 260);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.28 0.09 260);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.28 0.09 260);
+  --primary: oklch(0.52 0.2 260);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0.02 245);
+  --secondary-foreground: oklch(0.28 0.09 260);
+  --muted: oklch(0.96 0.02 245);
+  --muted-foreground: oklch(0.5 0.05 255);
+  --accent: oklch(0.76 0.13 215);
+  --accent-foreground: oklch(0.28 0.09 260);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --destructive-foreground: oklch(1 0 0);
+  --success: oklch(0.68 0.16 155);
+  --warning: oklch(0.78 0.16 75);
+  --croc: oklch(0.66 0.16 145);
+  --croc-dark: oklch(0.48 0.13 148);
+  --border: oklch(0.91 0.03 245);
+  --input: oklch(0.91 0.03 245);
+  --ring: oklch(0.52 0.2 260);
+  --gradient-hero: linear-gradient(180deg, oklch(0.96 0.02 245) 0%, oklch(1 0 0) 100%);
+  --gradient-deep: linear-gradient(135deg, oklch(0.52 0.2 260), oklch(0.28 0.09 260));
+  --shadow-soft: 0 12px 32px -12px color-mix(in oklab, var(--primary) 35%, transparent);
+  --chart-1: oklch(0.52 0.2 260);
+  --chart-2: oklch(0.76 0.13 215);
+  --chart-3: oklch(0.68 0.16 155);
+  --chart-4: oklch(0.78 0.16 75);
+  --chart-5: oklch(0.28 0.09 260);
+  --sidebar: oklch(0.96 0.02 245);
+  --sidebar-foreground: oklch(0.28 0.09 260);
+  --sidebar-primary: oklch(0.52 0.2 260);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.96 0.02 245);
+  --sidebar-accent-foreground: oklch(0.28 0.09 260);
+  --sidebar-border: oklch(0.91 0.03 245);
+  --sidebar-ring: oklch(0.52 0.2 260);
+}
+
+@theme inline {
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-croc: var(--croc);
+  --color-croc-dark: var(--croc-dark);
+  --font-display: "Baloo 2", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+}
+
+@utility bg-hero { background: var(--gradient-hero); }
+@utility bg-deep { background: var(--gradient-deep); }
+@utility shadow-soft { box-shadow: var(--shadow-soft); }
+@utility animate-bob { animation: bob 3.2s ease-in-out infinite; }
+@utility animate-bubble { animation: bubble 7s ease-in infinite; }
+
+@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+@keyframes bubble {
+  0% { transform: translateY(0) scale(.6); opacity: 0 }
+  15% { opacity: .7 }
+  100% { transform: translateY(-260px) scale(1.1); opacity: 0 }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
 .dark {
