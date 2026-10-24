@@ -12,7 +12,7 @@ import { locationRequestLink, validPin, type LocationPin, type PickupAddress } f
 const LocationsMap = lazy(() => import("@/components/LocationsMap"));
 
 export const Route = createFileRoute("/locations")({
-  validateSearch: (search: Record<string, unknown>) => ({ city: typeof search.city === "string" && BRANCHES.some((b) => b.id === search.city) ? search.city : "nbo" }),
+  validateSearch: (search: Record<string, unknown>) => ({ city: typeof search['city'] === "string" && BRANCHES.some((b) => b.id === search['city']) ? search['city'] : "nbo" }),
   head: () => ({ meta: [
     { title: "Locations & pickup address | Nyang Cleaners" },
     { name: "description", content: "Find Nyang Cleaners cities in Kenya and share your pickup pin and address with our team on WhatsApp." },
