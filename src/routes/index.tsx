@@ -17,6 +17,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "We pick up, we sparkle, we deliver. Laundry, carpet, sofa, office and home help across Nairobi, Kisumu, Eldoret, Nakuru and Mombasa." },
       { property: "og:title", content: "Nyang Cleaners" },
       { property: "og:description", content: "Laundry, carpets and home help, picked up and delivered across Kenya." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: () => (<I18nProvider><Landing /></I18nProvider>),
@@ -48,6 +50,7 @@ function Landing() {
             <Mascot simple className="size-9" /> Nyang Cleaners
           </a>
           <div className="flex items-center gap-2">
+            <Button asChild variant="ghost" size="sm"><Link to="/locations" search={{ city: "nbo" }}>{t.locations.nav}</Link></Button>
             <button onClick={() => setLang(lang === "en" ? "sw" : "en")} className="rounded-full border px-3 py-1 text-sm font-semibold">
               {lang === "en" ? "Kiswahili" : "English"}
             </button>
@@ -150,9 +153,9 @@ function Landing() {
         <h2 className="font-display text-3xl font-extrabold">{t.cities}</h2>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           {BRANCHES.map((b) => (
-            <span key={b.id} className="flex items-center gap-2 rounded-full border-2 border-primary/20 px-5 py-2 font-semibold">
+            <Button asChild key={b.id} variant="outline" className="rounded-full border-2 border-primary/20 px-5 py-2 font-semibold"><Link to="/locations" search={{ city: b.id }}>
               <NyangIcon name="pin" className="size-5 text-primary" />{b.city}
-            </span>
+            </Link></Button>
           ))}
         </div>
       </section>
