@@ -7,6 +7,7 @@ import { lovable } from "@/integrations/lovable/index";
 import { Button } from "@/components/ui/button";
 import { Mascot } from "@/components/Mascot";
 import { financeAccess } from "@/lib/finance.functions";
+import { filterSchema } from "@/lib/finance";
 import "@lovable.dev/cloud-auth-js/styles.css";
 
 export const Route = createFileRoute("/auth")({ head: () => ({ meta: [
@@ -23,7 +24,7 @@ function Auth() {
   useEffect(() => { void supabase.auth.getUser().then(({ data }) => setSignedIn(Boolean(data.user))); }, []);
   async function proceed() {
     setBusy(true); setError("");
-    try { if (!await financeAccess()) { setSignedIn(true); setError("This account does not have finance access. Sign in with the approved owner account."); return; } await router.navigate({ to: "/admin/finance" }); }
+    try { if (!await financeAccess()) { setSignedIn(true); setError("This account does not have finance access. Sign in with the approved owner account."); return; } await router.navigate({ to: "/admin/finance", search: filterSchema.parse({}) }); }
     catch (e) { setError(e instanceof Error ? e.message : "Sign-in could not be completed."); }
     finally { setBusy(false); }
   }

@@ -29,7 +29,8 @@ export const Route = createFileRoute("/_authenticated/admin/finance")({
 function FinanceError({ error }: ErrorComponentProps) {
   const router = useRouter();
   const queryClient = useQueryClient();
-  return <main className="mx-auto max-w-lg px-5 py-20 font-sans"><h1 className="font-display text-3xl font-bold">Finance unavailable</h1><p role="alert" className="mt-3 text-muted-foreground">{error.message}</p><div className="mt-6 flex gap-3"><Button onClick={() => router.invalidate()}>Try again</Button><Button variant="outline" onClick={async () => { await queryClient.cancelQueries(); queryClient.clear(); await supabase.auth.signOut(); await router.navigate({ to: "/auth", replace: true }); }}>Use another account</Button><Button asChild variant="ghost"><Link to="/">Home</Link></Button></div></main>;
+  const message = error instanceof Error ? error.message : "The financial page could not load.";
+  return <main className="mx-auto max-w-lg px-5 py-20 font-sans"><h1 className="font-display text-3xl font-bold">Finance unavailable</h1><p role="alert" className="mt-3 text-muted-foreground">{message}</p><div className="mt-6 flex gap-3"><Button onClick={() => router.invalidate()}>Try again</Button><Button variant="outline" onClick={async () => { await queryClient.cancelQueries(); queryClient.clear(); await supabase.auth.signOut(); await router.navigate({ to: "/auth", replace: true }); }}>Use another account</Button><Button asChild variant="ghost"><Link to="/">Home</Link></Button></div></main>;
 }
 function Finance() {
   const f = Route.useSearch();
