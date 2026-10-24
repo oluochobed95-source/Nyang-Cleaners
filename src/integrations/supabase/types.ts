@@ -14,16 +14,85 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      finance_entries: {
+        Row: {
+          amount: number
+          branch: string
+          created_at: string
+          created_by: string
+          description: string
+          entry_date: string
+          id: string
+          kind: string
+          method: string
+          reference: string
+          service: string
+          status: string
+        }
+        Insert: {
+          amount: number
+          branch: string
+          created_at?: string
+          created_by?: string
+          description: string
+          entry_date: string
+          id?: string
+          kind: string
+          method: string
+          reference?: string
+          service: string
+          status: string
+        }
+        Update: {
+          amount?: number
+          branch?: string
+          created_at?: string
+          created_by?: string
+          description?: string
+          entry_date?: string
+          id?: string
+          kind?: string
+          method?: string
+          reference?: string
+          service?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      ensure_finance_owner: { Args: never; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "finance"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +219,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "finance"],
+    },
   },
 } as const
