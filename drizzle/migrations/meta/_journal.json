@@ -1,5 +1,20 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792842763903,
+      "tag": "0000_create_private_finance",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792842990205,
+      "tag": "0001_restrict_finance_role_helpers",
+      "breakpoints": true
+    }
+  ]
 }

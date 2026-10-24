@@ -9,6 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { I18nProvider, useT } from "@/lib/i18n";
 import { APP_VERSION, BRANCHES, SERVICES, estimate, kes } from "@/lib/catalog";
 import { FAQ } from "@/lib/faq";
+import { FinanceAccessLink } from "@/components/FinanceAccessLink";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -211,6 +212,7 @@ function Landing() {
           <span className="flex items-center gap-2 font-display text-lg font-bold"><Mascot simple className="size-8" /> Nyang Cleaners</span>
           <span className="opacity-80">Become a housekeeper · Partner agencies · Privacy · Terms</span>
           <span className="opacity-60">v{APP_VERSION}</span>
+          <FinanceAccessLink />
         </div>
       </footer>
     </div>
