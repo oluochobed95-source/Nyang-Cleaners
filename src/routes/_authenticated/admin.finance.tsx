@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter, type ErrorComponentProps } from "@tanstack/react-router";
 import { queryOptions, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowDownLeft, ArrowUpRight, CalendarDays, Download, LogOut, Search, TrendingUp, Wallet } from "lucide-react";
@@ -15,7 +15,7 @@ import { getFinance } from "@/lib/finance.functions";
 
 const financeQuery = (filters: FinanceFilters) => queryOptions({ queryKey: ["finance", filters], queryFn: () => getFinance({ data: filters }), staleTime: 30000 });
 export const Route = createFileRoute("/_authenticated/admin/finance")({
-  validateSearch: (search) => filterSchema.parse(search),
+  validateSearch: (search): FinanceFilters => filterSchema.parse(search),
   loaderDeps: ({ search }) => search,
   loader: ({ context, deps }) => context.queryClient.ensureQueryData(financeQuery(deps)),
   errorComponent: FinanceError,
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/_authenticated/admin/finance")({
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }, { name: "robots", content: "noindex" },
   ] }), component: Finance,
 });
-function FinanceError({ error }: { error: Error }) {
+function FinanceError({ error }: ErrorComponentProps) {
   const router = useRouter();
   const queryClient = useQueryClient();
   return <main className="mx-auto max-w-lg px-5 py-20 font-sans"><h1 className="font-display text-3xl font-bold">Finance unavailable</h1><p role="alert" className="mt-3 text-muted-foreground">{error.message}</p><div className="mt-6 flex gap-3"><Button onClick={() => router.invalidate()}>Try again</Button><Button variant="outline" onClick={async () => { await queryClient.cancelQueries(); queryClient.clear(); await supabase.auth.signOut(); await router.navigate({ to: "/auth", replace: true }); }}>Use another account</Button><Button asChild variant="ghost"><Link to="/">Home</Link></Button></div></main>;
