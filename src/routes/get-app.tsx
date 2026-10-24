@@ -11,6 +11,8 @@ export const Route = createFileRoute("/get-app")({
       { name: "description", content: "Install the Nyang Cleaners app in seconds. Laundry, carpets and home help, picked up and delivered." },
       { property: "og:title", content: "Get the Nyang app" },
       { property: "og:description", content: "Laundry, carpets and home help, picked up and delivered." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: GetApp,
