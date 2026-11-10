@@ -20,7 +20,32 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Laundry, carpets and home help, picked up and delivered across Kenya." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://nyang.shop/" },
     ],
+    links: [{ rel: "canonical", href: "https://nyang.shop/" }],
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "DryCleaningOrLaundry",
+        name: "Nyang Cleaners",
+        url: "https://nyang.shop/",
+        telephone: "+254706460395",
+        priceRange: "KES 250 - KES 4,000",
+        currenciesAccepted: "KES",
+        paymentAccepted: "Cash, M-Pesa",
+        areaServed: BRANCHES.map((b) => ({ "@type": "City", name: b.city, address: { "@type": "PostalAddress", addressLocality: b.city, addressCountry: "KE" } })),
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Cleaning services",
+          itemListElement: SERVICES.flatMap((s) => s.options.map((o) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: o.label, serviceType: s.id },
+            priceSpecification: { "@type": "UnitPriceSpecification", price: o.price, priceCurrency: "KES", unitText: s.unit },
+          }))),
+        },
+      }),
+    }],
   }),
   component: () => (<I18nProvider><Landing /></I18nProvider>),
 });
